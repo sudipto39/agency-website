@@ -141,47 +141,47 @@
       if (theme === "neon-vortex") {
         // Volumetric Core Glow
         const coreGlow = ctx.createRadialGradient(cx, cy, 4, cx, cy, Math.max(w, h) * 0.48);
-        coreGlow.addColorStop(0, "rgba(204, 255, 0, 0.55)");
-        coreGlow.addColorStop(0.35, "rgba(139, 92, 246, 0.35)");
-        coreGlow.addColorStop(0.7, "rgba(255, 46, 99, 0.15)");
-        coreGlow.addColorStop(1, "rgba(6, 6, 14, 0)");
+        coreGlow.addColorStop(0, "rgba(16, 235, 130, 0.42)");
+        coreGlow.addColorStop(0.4, "rgba(56, 189, 248, 0.22)");
+        coreGlow.addColorStop(0.75, "rgba(45, 212, 191, 0.08)");
+        coreGlow.addColorStop(1, "rgba(7, 9, 11, 0)");
         ctx.fillStyle = coreGlow;
         ctx.fillRect(0, 0, w, h);
 
         // 3D Warp Speed Light Streaks
-        const rays = 24;
+        const rays = 22;
         for (let r = 0; r < rays; r++) {
-          const angle = (r / rays) * Math.PI * 2 + t * 0.25;
-          const dist1 = (((t * 1.4 + r * 0.17) % 1) ** 2) * Math.max(w, h) * 0.6;
-          const dist2 = dist1 * 1.38 + 12;
+          const angle = (r / rays) * Math.PI * 2 + t * 0.22;
+          const dist1 = (((t * 1.2 + r * 0.17) % 1) ** 2) * Math.max(w, h) * 0.58;
+          const dist2 = dist1 * 1.35 + 10;
           ctx.beginPath();
-          ctx.strokeStyle = r % 2 === 0 ? "rgba(204, 255, 0, 0.7)" : "rgba(0, 240, 255, 0.65)";
-          ctx.lineWidth = 2;
+          ctx.strokeStyle = r % 2 === 0 ? "rgba(16, 235, 130, 0.62)" : "rgba(56, 189, 248, 0.52)";
+          ctx.lineWidth = 1.6;
           ctx.moveTo(cx + Math.cos(angle) * dist1, cy + Math.sin(angle) * dist1);
           ctx.lineTo(cx + Math.cos(angle) * dist2, cy + Math.sin(angle) * dist2);
           ctx.stroke();
         }
 
         // Expanding 3D Vortex Rings
-        const count = Math.max(8, Math.floor(14 * density));
+        const count = Math.max(8, Math.floor(12 * density));
         for (let i = 0; i < count; i++) {
-          const p = ((i / count) + t * 0.28) % 1;
-          const r = Math.pow(p, 1.5) * Math.max(w, h) * 0.62;
-          const alpha = Math.sin(p * Math.PI) * 0.85;
+          const p = ((i / count) + t * 0.24) % 1;
+          const r = Math.pow(p, 1.5) * Math.max(w, h) * 0.6;
+          const alpha = Math.sin(p * Math.PI) * 0.72;
           ctx.beginPath();
           ctx.strokeStyle =
             i % 3 === 0
-              ? `rgba(204,255,0,${alpha})`
+              ? `rgba(16,235,130,${alpha})`
               : i % 3 === 1
-              ? `rgba(0,240,255,${alpha})`
-              : `rgba(255,46,99,${alpha})`;
-          ctx.lineWidth = 1.5 + p * 2.5;
+              ? `rgba(56,189,248,${alpha})`
+              : `rgba(45,212,191,${alpha})`;
+          ctx.lineWidth = 1.2 + p * 2.0;
           ctx.ellipse(
-            cx + Math.cos(t * 1.5 + i) * 18 * (1 - p),
-            cy + Math.sin(t * 1.3 + i) * 18 * (1 - p),
+            cx + Math.cos(t * 1.3 + i) * 14 * (1 - p),
+            cy + Math.sin(t * 1.1 + i) * 14 * (1 - p),
             Math.max(2, r),
             Math.max(2, r * 0.62),
-            t * 0.35 + i * 0.15,
+            t * 0.3 + i * 0.15,
             0,
             Math.PI * 2
           );
@@ -190,17 +190,17 @@
       } else if (theme === "cyber-grid") {
         const horizon = cy * 0.8;
 
-        // Cyber Sun Flare
+        // Horizon Glow
         const sunGrad = ctx.createRadialGradient(cx, horizon - 15, 6, cx, horizon - 15, h * 0.45);
-        sunGrad.addColorStop(0, "rgba(0, 240, 255, 0.75)");
-        sunGrad.addColorStop(0.4, "rgba(168, 85, 247, 0.38)");
-        sunGrad.addColorStop(1, "rgba(6, 6, 14, 0)");
+        sunGrad.addColorStop(0, "rgba(56, 189, 248, 0.55)");
+        sunGrad.addColorStop(0.45, "rgba(16, 235, 130, 0.24)");
+        sunGrad.addColorStop(1, "rgba(7, 9, 11, 0)");
         ctx.fillStyle = sunGrad;
         ctx.fillRect(0, 0, w, h);
 
         // Perspective Grid
-        ctx.strokeStyle = "rgba(0, 240, 255, 0.5)";
-        ctx.lineWidth = 1.3;
+        ctx.strokeStyle = "rgba(56, 189, 248, 0.38)";
+        ctx.lineWidth = 1.15;
         const lines = Math.max(8, Math.floor(12 * density));
         for (let i = -lines; i <= lines; i++) {
           ctx.beginPath();
@@ -209,9 +209,9 @@
           ctx.stroke();
         }
         for (let r = 0; r < 9; r++) {
-          const p = ((r / 9) + (t * 0.5) % 1) % 1;
+          const p = ((r / 9) + (t * 0.45) % 1) % 1;
           const y = horizon + p * p * (h - horizon);
-          ctx.strokeStyle = `rgba(204, 255, 0, ${p * 0.85})`;
+          ctx.strokeStyle = `rgba(16, 235, 130, ${p * 0.7})`;
           ctx.beginPath();
           ctx.moveTo(0, y);
           ctx.lineTo(w, y);
@@ -221,11 +221,11 @@
         // Rotating 3D Crystal Wireframe
         ctx.save();
         ctx.translate(cx, horizon - 28);
-        ctx.strokeStyle = "#CCFF00";
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = "#10EB82";
+        ctx.lineWidth = 1.6;
         const sz = Math.min(w, h) * 0.24;
         for (let k = 0; k < 5; k++) {
-          const a = t * 1.2 + (k * Math.PI * 2) / 5;
+          const a = t * 1.1 + (k * Math.PI * 2) / 5;
           const vx = Math.cos(a) * sz;
           const vy = Math.sin(a) * (sz * 0.35);
           ctx.beginPath();
@@ -237,17 +237,17 @@
         ctx.restore();
       } else if (theme === "liquid-aurora") {
         const waves = Math.max(4, Math.floor(6 * density));
-        const colors = ["#FF2E63", "#A855F7", "#00F0FF", "#CCFF00"];
+        const colors = ["#10EB82", "#38BDF8", "#2DD4BF", "#A7F3D0"];
         for (let k = 0; k < waves; k++) {
           ctx.beginPath();
           ctx.strokeStyle = colors[k % colors.length];
-          ctx.lineWidth = 3;
+          ctx.lineWidth = 2.4;
           for (let x = 0; x <= w; x += 16) {
             const nx = x / w;
             const y =
               cy +
-              Math.sin(nx * 5 + t * 2.0 + k * 0.8) * (h * 0.2) +
-              Math.cos(nx * 8 - t * 1.4 + k) * (h * 0.08);
+              Math.sin(nx * 5 + t * 1.8 + k * 0.8) * (h * 0.19) +
+              Math.cos(nx * 8 - t * 1.2 + k) * (h * 0.07);
             if (x === 0) ctx.moveTo(x, y);
             else ctx.lineTo(x, y);
           }
@@ -257,11 +257,11 @@
         const bars = Math.max(16, Math.floor(24 * density));
         const bw = w / bars;
         for (let b = 0; b < bars; b++) {
-          const amp = Math.abs(Math.sin(t * 2.8 + b * 0.35) * Math.cos(t * 1.4 - b * 0.2)) * (h * 0.72);
+          const amp = Math.abs(Math.sin(t * 2.5 + b * 0.35) * Math.cos(t * 1.3 - b * 0.2)) * (h * 0.68);
           const barGrad = ctx.createLinearGradient(0, h - amp, 0, h);
-          barGrad.addColorStop(0, "#CCFF00");
-          barGrad.addColorStop(0.5, "#00F0FF");
-          barGrad.addColorStop(1, "#FF2E63");
+          barGrad.addColorStop(0, "#10EB82");
+          barGrad.addColorStop(0.55, "#2DD4BF");
+          barGrad.addColorStop(1, "rgba(56, 189, 248, 0.35)");
           ctx.fillStyle = barGrad;
           ctx.fillRect(b * bw + 2, h - amp, Math.max(2, bw - 5), amp);
         }
@@ -275,21 +275,21 @@
             const px = (c + 0.5) * cw;
             const py = (r + 0.5) * ch;
             const d = Math.hypot(px - cx, py - cy);
-            const pulse = Math.sin(d * 0.032 - t * 3.5) * 0.5 + 0.5;
+            const pulse = Math.sin(d * 0.032 - t * 3.2) * 0.5 + 0.5;
             ctx.beginPath();
-            ctx.fillStyle = pulse > 0.6 ? "#CCFF00" : "rgba(255, 138, 0, 0.5)";
-            ctx.arc(px, py, 2 + pulse * 4.5, 0, Math.PI * 2);
+            ctx.fillStyle = pulse > 0.6 ? "#10EB82" : "rgba(56, 189, 248, 0.38)";
+            ctx.arc(px, py, 2 + pulse * 4.2, 0, Math.PI * 2);
             ctx.fill();
           }
         }
       } else {
         const segs = 14;
         for (let s = 0; s < segs; s++) {
-          const a = (s / segs) * Math.PI * 2 + t * 0.7;
+          const a = (s / segs) * Math.PI * 2 + t * 0.65;
           const rx = cx + Math.cos(a) * (w * 0.22);
           const ry = cy + Math.sin(a) * (h * 0.22);
-          ctx.strokeStyle = s % 2 === 0 ? "#10B981" : "#00F0FF";
-          ctx.lineWidth = 1.8;
+          ctx.strokeStyle = s % 2 === 0 ? "#10EB82" : "#38BDF8";
+          ctx.lineWidth = 1.6;
           ctx.strokeRect(rx - 16, ry - 16, 32, 32);
         }
       }
@@ -435,9 +435,9 @@
     }
 
     const spriteEmerald = createGlowSprite("#10EB82", 30);
-    const spriteCyan = createGlowSprite("#00F0FF", 30);
-    const spriteCoral = createGlowSprite("#FF2E63", 36);
-    const spriteLime = createGlowSprite("#CCFF00", 32);
+    const spriteCyan = createGlowSprite("#38BDF8", 30);
+    const spriteCoral = createGlowSprite("#2DD4BF", 34);
+    const spriteLime = createGlowSprite("#6EE7B7", 32);
 
     // 2. Build 380-point Fibonacci 3D Holographic Sphere
     const numParticles = 380;
@@ -459,7 +459,7 @@
         x,
         y,
         z,
-        size: isCoralHub ? 3.5 : isCyanHub ? 2.8 : isBrightEmerald ? 2.25 : 1.35,
+        size: isCoralHub ? 3.4 : isCyanHub ? 2.8 : isBrightEmerald ? 2.25 : 1.35,
         sprite: isCoralHub
           ? spriteCoral
           : isCyanHub
@@ -468,9 +468,9 @@
           ? spriteEmerald
           : null,
         color: isCoralHub
-          ? "#FF2E63"
+          ? "#2DD4BF"
           : isCyanHub
-          ? "#00F0FF"
+          ? "#38BDF8"
           : isBrightEmerald
           ? "#10EB82"
           : "#A7F3D0"
@@ -479,9 +479,9 @@
 
     // 3. Live 3D Bezier Conversion Laser Arcs jumping between global hubs
     const arcPalette = [
-      { stroke: "204, 255, 0", sprite: spriteLime },
-      { stroke: "0, 240, 255", sprite: spriteCyan },
-      { stroke: "255, 46, 99", sprite: spriteCoral }
+      { stroke: "16, 235, 130", sprite: spriteEmerald },
+      { stroke: "56, 189, 248", sprite: spriteCyan },
+      { stroke: "110, 231, 183", sprite: spriteLime }
     ];
     const conversionArcs = Array.from({ length: 7 }, (_, idx) => {
       const a = (idx * 53) % numParticles;
@@ -502,18 +502,16 @@
     const bokehDust = Array.from({ length: dustCount }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: 0.8 + Math.random() * 2.3,
+      r: 0.8 + Math.random() * 2.2,
       vx: (Math.random() - 0.5) * 0.00018,
       vy: -0.00014 - Math.random() * 0.00024,
       phase: Math.random() * Math.PI * 2,
       hue:
-        Math.random() > 0.72
-          ? "#00F0FF"
-          : Math.random() > 0.35
+        Math.random() > 0.65
+          ? "#38BDF8"
+          : Math.random() > 0.25
           ? "#10EB82"
-          : Math.random() > 0.15
-          ? "#CCFF00"
-          : "#FF2E63"
+          : "#E2E8F0"
     }));
 
     const meteors = Array.from({ length: 3 }, (_, idx) => ({
@@ -523,7 +521,7 @@
       vy: 0.0021 + idx * 0.0004,
       len: 110 + idx * 35,
       cooldown: idx * 140,
-      color: idx === 1 ? "0, 240, 255" : idx === 2 ? "204, 255, 0" : "16, 235, 130"
+      color: idx === 1 ? "56, 189, 248" : idx === 2 ? "110, 231, 183" : "16, 235, 130"
     }));
 
     // 5. Viewport Culling & Smooth Mouse Inertia
@@ -650,12 +648,11 @@
           bgCtx.fillStyle = cursorHalo;
           bgCtx.fillRect(0, 0, bw, bh);
 
-          // 2. 4 Liquid Northern-Light Silk Aurora Curtains (Filled Gradient Sheets + Crest Glow)
+          // 2. 3 Liquid Northern-Light Silk Aurora Curtains (Emerald + Glacier Cyan + Seafoam)
           const curtains = [
-            { rgb: "16, 235, 130", peakAlpha: 0.15, amp: bh * 0.085, freq: 2.3, speed: 0.52, yBase: bh * 0.44, curtainH: bh * 0.26 },
-            { rgb: "0, 240, 255", peakAlpha: 0.12, amp: bh * 0.095, freq: 1.9, speed: -0.41, yBase: bh * 0.51, curtainH: bh * 0.24 },
-            { rgb: "139, 92, 246", peakAlpha: 0.13, amp: bh * 0.075, freq: 2.8, speed: 0.34, yBase: bh * 0.36, curtainH: bh * 0.22 },
-            { rgb: "255, 46, 99", peakAlpha: 0.075, amp: bh * 0.065, freq: 3.2, speed: -0.29, yBase: bh * 0.58, curtainH: bh * 0.18 }
+            { rgb: "16, 235, 130", peakAlpha: 0.14, amp: bh * 0.085, freq: 2.2, speed: 0.48, yBase: bh * 0.44, curtainH: bh * 0.26 },
+            { rgb: "56, 189, 248", peakAlpha: 0.11, amp: bh * 0.095, freq: 1.85, speed: -0.38, yBase: bh * 0.51, curtainH: bh * 0.24 },
+            { rgb: "45, 212, 191", peakAlpha: 0.09, amp: bh * 0.072, freq: 2.7, speed: 0.31, yBase: bh * 0.37, curtainH: bh * 0.22 }
           ];
 
           curtains.forEach((cur, idx) => {
@@ -778,31 +775,31 @@
             radius: globeRadius * 1.22,
             tiltX: 1.14 + (smoothMouseY - 0.5) * 0.18,
             tiltZ: 0.38 + mouseTiltZ,
-            speed: 0.88,
-            frontColor: "rgba(204, 255, 0, 0.34)",
-            backColor: "rgba(16, 235, 130, 0.12)",
-            trailRgb: "204, 255, 0",
-            sprite: spriteLime
+            speed: 0.82,
+            frontColor: "rgba(16, 235, 130, 0.32)",
+            backColor: "rgba(16, 235, 130, 0.10)",
+            trailRgb: "16, 235, 130",
+            sprite: spriteEmerald
           },
           {
             radius: globeRadius * 1.35,
             tiltX: -1.02 + (smoothMouseY - 0.5) * 0.15,
             tiltZ: -0.46 + mouseTiltZ,
-            speed: -0.7,
-            frontColor: "rgba(0, 240, 255, 0.30)",
-            backColor: "rgba(0, 240, 255, 0.10)",
-            trailRgb: "0, 240, 255",
+            speed: -0.66,
+            frontColor: "rgba(56, 189, 248, 0.28)",
+            backColor: "rgba(56, 189, 248, 0.09)",
+            trailRgb: "56, 189, 248",
             sprite: spriteCyan
           },
           {
             radius: globeRadius * 1.12,
             tiltX: 1.32,
             tiltZ: -1.05 - mouseTiltZ * 0.6,
-            speed: 0.54,
-            frontColor: "rgba(255, 46, 99, 0.24)",
-            backColor: "rgba(255, 46, 99, 0.08)",
-            trailRgb: "255, 46, 99",
-            sprite: spriteCoral
+            speed: 0.52,
+            frontColor: "rgba(110, 231, 183, 0.22)",
+            backColor: "rgba(110, 231, 183, 0.07)",
+            trailRgb: "110, 231, 183",
+            sprite: spriteLime
           }
         ];
 
@@ -1231,7 +1228,7 @@
             <div class="case-body">
               <div>
                 <div class="case-client-row">
-                  <span>CLIENT // ${cs.client.toUpperCase()}</span>
+                  <span>${cs.client}</span>
                   <span>${cs.year}</span>
                 </div>
                 <h3 class="case-title">${cs.title}</h3>
@@ -1484,7 +1481,7 @@
               <p class="process-desc">${p.description}</p>
             </div>
             <div class="process-deliverable">
-              OUTPUT // ${p.deliverable}
+              Deliverable: ${p.deliverable}
             </div>
           </article>
         `

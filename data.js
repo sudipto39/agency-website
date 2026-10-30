@@ -52,7 +52,7 @@ window.AGENCY_DATA = {
       client: "Veloce & Lumina (6.2x ROAS)",
       duration: "0:45",
       theme: "neon-vortex",
-      accent: "#CCFF00",
+      accent: "#10EB82",
       description: "High-retention TikTok, Reels & YouTube Shorts ad creative engineered to hook viewers in 1.5 seconds."
     },
     {
@@ -62,7 +62,7 @@ window.AGENCY_DATA = {
       client: "Meta • Google • LinkedIn",
       duration: "0:52",
       theme: "cyber-grid",
-      accent: "#00F0FF",
+      accent: "#38BDF8",
       description: "Algorithmic media buying, server-side CAPI tracking, and predictive bidding across global markets."
     },
     {
@@ -72,7 +72,7 @@ window.AGENCY_DATA = {
       client: "Aether & Chronos (+410% Organic)",
       duration: "0:38",
       theme: "liquid-aurora",
-      accent: "#FF2E63",
+      accent: "#2DD4BF",
       description: "Dominating Google #1 rankings, ChatGPT/Perplexity citations, and programmatic content moats."
     },
     {
@@ -82,7 +82,7 @@ window.AGENCY_DATA = {
       client: "Kroma Audio (+190% CVR)",
       duration: "0:41",
       theme: "kinetic-type",
-      accent: "#A855F7",
+      accent: "#10EB82",
       description: "High-velocity landing pages, A/B split testing, and automated Klaviyo/HubSpot retention flows."
     }
   ],
@@ -98,7 +98,7 @@ window.AGENCY_DATA = {
       timeline: "Launch in 7 Days",
       priceHint: "Meta • TikTok • LinkedIn",
       videoTheme: "neon-vortex",
-      accent: "#CCFF00",
+      accent: "#10EB82",
       deliverables: [
         "Meta & TikTok Scaling Architecture",
         "LinkedIn B2B Account-Based Ads",
@@ -116,7 +116,7 @@ window.AGENCY_DATA = {
       timeline: "Compounding MoM",
       priceHint: "Google #1 & AI Citations",
       videoTheme: "cyber-grid",
-      accent: "#00F0FF",
+      accent: "#38BDF8",
       deliverables: [
         "Technical SEO & Core Web Vitals",
         "Programmatic Bottom-Funnel Content",
@@ -134,7 +134,7 @@ window.AGENCY_DATA = {
       timeline: "Weekly Ad Drops",
       priceHint: "20–40 Ads / Month",
       videoTheme: "kinetic-type",
-      accent: "#FF2E63",
+      accent: "#2DD4BF",
       deliverables: [
         "Vetted Creator UGC Network",
         "Motion Graphics & 3D Product Ads",
@@ -152,7 +152,7 @@ window.AGENCY_DATA = {
       timeline: "Immediate Lift",
       priceHint: "Google Premier Partner",
       videoTheme: "liquid-aurora",
-      accent: "#A855F7",
+      accent: "#38BDF8",
       deliverables: [
         "High-Intent Search & Exact Match",
         "Performance Max & Merchant Feeds",
@@ -170,7 +170,7 @@ window.AGENCY_DATA = {
       timeline: "Bi-Weekly Sprints",
       priceHint: "A/B Testing & Funnels",
       videoTheme: "pulse-matrix",
-      accent: "#FF8A00",
+      accent: "#10EB82",
       deliverables: [
         "Dedicated Paid Ad Landing Pages",
         "Heatmap & Funnel Drop-Off Audits",
@@ -188,7 +188,7 @@ window.AGENCY_DATA = {
       timeline: "30-Day Rollout",
       priceHint: "Klaviyo • HubSpot • CRM",
       videoTheme: "prism-wave",
-      accent: "#10B981",
+      accent: "#2DD4BF",
       deliverables: [
         "Automated Welcome & Abandon Flows",
         "VIP Retention & Winback SMS",
@@ -208,8 +208,8 @@ window.AGENCY_DATA = {
       category: "paid-social",
       categoryLabel: "Paid Social & Video",
       featured: true,
-      accent: "#CCFF00",
-      secondaryAccent: "#10EB82",
+      accent: "#10EB82",
+      secondaryAccent: "#34D399",
       videoTheme: "neon-vortex",
       metrics: [
         { value: "5.8x", label: "Blended ROAS" },
@@ -232,7 +232,7 @@ window.AGENCY_DATA = {
       category: "seo-organic",
       categoryLabel: "SEO & B2B Demand",
       featured: true,
-      accent: "#00F0FF",
+      accent: "#38BDF8",
       secondaryAccent: "#0EA5E9",
       videoTheme: "cyber-grid",
       metrics: [
@@ -256,8 +256,8 @@ window.AGENCY_DATA = {
       category: "ecommerce",
       categoryLabel: "E-Commerce ROAS",
       featured: false,
-      accent: "#FF2E63",
-      secondaryAccent: "#F43F5E",
+      accent: "#2DD4BF",
+      secondaryAccent: "#10EB82",
       videoTheme: "liquid-aurora",
       metrics: [
         { value: "42M+", label: "UGC Video Views" },
@@ -280,8 +280,8 @@ window.AGENCY_DATA = {
       category: "ecommerce",
       categoryLabel: "E-Commerce ROAS",
       featured: false,
-      accent: "#A855F7",
-      secondaryAccent: "#EC4899",
+      accent: "#38BDF8",
+      secondaryAccent: "#2DD4BF",
       videoTheme: "kinetic-type",
       metrics: [
         { value: "$6.2M", label: "Launch Month Sales" },
@@ -304,8 +304,8 @@ window.AGENCY_DATA = {
       category: "b2b-demand",
       categoryLabel: "B2B Demand Gen",
       featured: false,
-      accent: "#FF8A00",
-      secondaryAccent: "#FACC15",
+      accent: "#10EB82",
+      secondaryAccent: "#38BDF8",
       videoTheme: "pulse-matrix",
       metrics: [
         { value: "+290%", label: "Qualified CFO Demos" },
@@ -355,7 +355,7 @@ window.AGENCY_DATA = {
       metric: "5.8x Blended ROAS",
       videoDuration: "0:52",
       videoTheme: "neon-vortex",
-      accent: "#CCFF00",
+      accent: "#10EB82",
       avatarInitials: "MB"
     },
     {
@@ -367,7 +367,7 @@ window.AGENCY_DATA = {
       metric: "+410% Inbound SQLs",
       videoDuration: "1:04",
       videoTheme: "cyber-grid",
-      accent: "#00F0FF",
+      accent: "#38BDF8",
       avatarInitials: "ER"
     },
     {
@@ -379,7 +379,7 @@ window.AGENCY_DATA = {
       metric: "-46% CAC & 42M Views",
       videoDuration: "0:47",
       videoTheme: "liquid-aurora",
-      accent: "#FF2E63",
+      accent: "#2DD4BF",
       avatarInitials: "SL"
     },
     {
@@ -391,7 +391,7 @@ window.AGENCY_DATA = {
       metric: "-51% Cost Per SQL",
       videoDuration: "0:41",
       videoTheme: "kinetic-type",
-      accent: "#A855F7",
+      accent: "#10EB82",
       avatarInitials: "DC"
     }
   ],
@@ -410,7 +410,7 @@ window.AGENCY_DATA = {
       badge: "SINGLE-CHANNEL SCALE",
       price: "$4,500/mo",
       duration: "No Long-Term Lock-In",
-      accent: "#00F0FF",
+      accent: "#94A3B8",
       description: "Built for fast-growing brands ready to dominate either Paid Media (Meta/Google) OR Technical SEO + CRO.",
       features: [
         "Full Management of Meta Ads + Google Ads (Up to $50k spend)",
@@ -426,7 +426,7 @@ window.AGENCY_DATA = {
       featured: true,
       price: "$9,500/mo",
       duration: "Dedicated Growth Pod",
-      accent: "#CCFF00",
+      accent: "#10EB82",
       description: "Complete omnichannel acquisition, viral ad creative production, SEO authority, and conversion rate optimization.",
       features: [
         "Omnichannel Paid Social + Google PPC / PMax + Retargeting",
@@ -442,7 +442,7 @@ window.AGENCY_DATA = {
       badge: "CATEGORY DOMINATION",
       price: "$18,500/mo",
       duration: "Custom SLA & Attribution",
-      accent: "#FF2E63",
+      accent: "#38BDF8",
       description: "For 8- and 9-figure DTC & B2B leaders scaling $150k–$2M+/mo in media spend across global territories.",
       features: [
         "Unlimited Multi-Channel Media Buying (Meta, TikTok, Google, LinkedIn, YouTube)",
