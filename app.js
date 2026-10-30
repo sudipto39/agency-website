@@ -1740,6 +1740,14 @@
 
     const mobileBtn = document.getElementById("mobile-menu-btn");
     const mainNav = document.getElementById("main-nav");
+    const navLinks = Array.from(document.querySelectorAll(".nav-link[data-nav-section]"));
+
+    const setActiveNav = (sectionId) => {
+      navLinks.forEach((link) => {
+        link.classList.toggle("is-active", link.dataset.navSection === sectionId);
+      });
+    };
+
     if (mobileBtn && mainNav) {
       mobileBtn.addEventListener("click", () => {
         const isOpen = mainNav.classList.toggle("is-open");
@@ -1748,9 +1756,253 @@
 
       mainNav.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", () => {
+          if (link.dataset.navSection) {
+            setActiveNav(link.dataset.navSection);
+          }
           mainNav.classList.remove("is-open");
           mobileBtn.setAttribute("aria-expanded", "false");
         });
+      });
+    }
+
+    // Active section scroll-spy for dock navbar rounded-rect pill
+    if ("IntersectionObserver" in window && navLinks.length > 0) {
+      const spySections = navLinks
+        .map((link) => document.getElementById(link.dataset.navSection))
+        .filter(Boolean);
+
+      const navObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveNav(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: "-36% 0px -54% 0px", threshold: 0 }
+      );
+
+      spySections.forEach((sec) => navObserver.observe(sec));
+    }
+
+    // Expandable Inline Navbar Search Bar (Icon-only -> Expands on Click, No Popup Window)
+    const searchWrap = document.getElementById("nav-search-wrap");
+    const searchToggle = document.getElementById("nav-search-toggle");
+    const searchInput = document.getElementById("nav-search-input");
+    const searchClose = document.getElementById("nav-search-close");
+    const searchDropdown = document.getElementById("nav-search-dropdown");
+
+    if (searchWrap && searchToggle && searchInput && searchDropdown) {
+      const searchItems = [
+        {
+          title: "Home — 3D Campaign Engine",
+          sub: "Jump to top Hero overview",
+          tag: "SECTION",
+          run: () => { window.location.hash = "#showreel"; setActiveNav("showreel"); }
+        },
+        {
+          title: "Services — Revenue Channels",
+          sub: "Paid Social, Google PPC, AI SEO, CRO & Lifecycle",
+          tag: "SECTION",
+          run: () => { window.location.hash = "#services"; setActiveNav("services"); }
+        },
+        {
+          title: "Work — Verified Client Case Studies",
+          sub: "Explore 4.9x blended ROAS growth campaigns",
+          tag: "SECTION",
+          run: () => { window.location.hash = "#work"; setActiveNav("work"); }
+        },
+        {
+          title: "Creative — Ad Creative Studio",
+          sub: "Interactive 3-second hook & motion preview lab",
+          tag: "SECTION",
+          run: () => { window.location.hash = "#motion-lab"; setActiveNav("motion-lab"); }
+        },
+        {
+          title: "Pricing — Retainers & ROAS Simulator",
+          sub: "Model monthly ad spend & projected revenue",
+          tag: "SECTION",
+          run: () => { window.location.hash = "#pricing"; setActiveNav("pricing"); }
+        },
+        {
+          title: "Reviews — Client Executive Testimonials",
+          sub: "CMO & Founder video reviews",
+          tag: "SECTION",
+          run: () => { window.location.hash = "#testimonials"; setActiveNav("testimonials"); }
+        },
+        {
+          title: "Claim Free Growth Audit",
+          sub: "Book a custom 90-day acquisition roadmap",
+          tag: "ACTION",
+          run: () => { window.location.hash = "#contact"; setActiveNav("contact"); }
+        },
+        {
+          title: "Watch 2026 Performance Reel",
+          sub: "Open fullscreen campaign reel modal",
+          tag: "VIDEO",
+          run: () => document.getElementById("open-showreel-modal-btn")?.click()
+        },
+        ...(DATA.services || []).map((svc) => ({
+          title: svc.title,
+          sub: `${svc.metric} • ${svc.summary}`,
+          tag: "CHANNEL",
+          run: () => { window.location.hash = "#services"; setActiveNav("services"); }
+        })),
+        ...(DATA.caseStudies || []).map((cs) => ({
+          title: `${cs.client} — ${cs.title}`,
+          sub: cs.metrics.map((m) => `${m.value} ${m.label}`).join(" • "),
+          tag: "CASE STUDY",
+          run: () => {
+            openVideoModal({
+              title: `${cs.client} — ${cs.title}`,
+              subtitle: cs.subtitle,
+              category: `${cs.category.toUpperCase()} // ${cs.year}`,
+              videoTheme: cs.videoTheme,
+              challenge: cs.challenge,
+              solution: cs.solution,
+              metrics: cs.metrics,
+              quote: cs.quote
+            });
+          }
+        }))
+      ];
+
+      let filtered = searchItems;
+      let activeIdx = 0;
+
+      const collapseSearch = () => {
+        searchWrap.classList.remove("is-expanded");
+        searchToggle.setAttribute("aria-expanded", "false");
+        searchDropdown.hidden = true;
+        searchInput.value = "";
+      };
+
+      const expandSearch = () => {
+        searchWrap.classList.add("is-expanded");
+        searchToggle.setAttribute("aria-expanded", "true");
+        activeIdx = 0;
+        renderResults();
+        requestAnimationFrame(() => searchInput.focus());
+      };
+
+      const renderResults = () => {
+        const q = searchInput.value.trim().toLowerCase();
+        filtered = q
+          ? searchItems.filter(
+              (item) =>
+                item.title.toLowerCase().includes(q) ||
+                item.sub.toLowerCase().includes(q) ||
+                item.tag.toLowerCase().includes(q)
+            )
+          : searchItems.slice(0, 7);
+
+        if (activeIdx >= filtered.length) activeIdx = 0;
+        searchDropdown.innerHTML = "";
+
+        if (filtered.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "nav-search-empty";
+          empty.textContent = "No matching sections or services.";
+          searchDropdown.appendChild(empty);
+          searchDropdown.hidden = false;
+          return;
+        }
+
+        filtered.forEach((item, idx) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = `nav-search-item${idx === activeIdx ? " is-selected" : ""}`;
+
+          const info = document.createElement("div");
+          info.className = "nav-search-item-info";
+          const title = document.createElement("span");
+          title.className = "nav-search-item-title";
+          title.textContent = item.title;
+          const sub = document.createElement("span");
+          sub.className = "nav-search-item-sub";
+          sub.textContent = item.sub;
+          info.appendChild(title);
+          info.appendChild(sub);
+
+          const tag = document.createElement("span");
+          tag.className = "nav-search-item-tag";
+          tag.textContent = item.tag;
+
+          btn.appendChild(info);
+          btn.appendChild(tag);
+
+          btn.addEventListener("click", () => {
+            collapseSearch();
+            item.run();
+          });
+
+          searchDropdown.appendChild(btn);
+        });
+
+        searchDropdown.hidden = false;
+      };
+
+      searchToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (searchWrap.classList.contains("is-expanded")) {
+          collapseSearch();
+        } else {
+          expandSearch();
+        }
+      });
+
+      if (searchClose) {
+        searchClose.addEventListener("click", (e) => {
+          e.stopPropagation();
+          collapseSearch();
+        });
+      }
+
+      searchInput.addEventListener("input", () => {
+        activeIdx = 0;
+        renderResults();
+      });
+
+      searchInput.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!searchWrap.contains(e.target)) {
+          collapseSearch();
+        }
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          if (searchWrap.classList.contains("is-expanded")) {
+            collapseSearch();
+          } else {
+            expandSearch();
+          }
+          return;
+        }
+
+        if (!searchWrap.classList.contains("is-expanded")) return;
+
+        if (e.key === "Escape") {
+          e.preventDefault();
+          collapseSearch();
+        } else if (e.key === "ArrowDown" && filtered.length > 0) {
+          e.preventDefault();
+          activeIdx = (activeIdx + 1) % filtered.length;
+          renderResults();
+        } else if (e.key === "ArrowUp" && filtered.length > 0) {
+          e.preventDefault();
+          activeIdx = (activeIdx - 1 + filtered.length) % filtered.length;
+          renderResults();
+        } else if (e.key === "Enter" && filtered[activeIdx]) {
+          e.preventDefault();
+          const chosen = filtered[activeIdx];
+          collapseSearch();
+          chosen.run();
+        }
       });
     }
 
@@ -1772,40 +2024,123 @@
       revealEls.forEach((el) => el.classList.add("is-visible"));
     }
 
-    // Zero-lag Custom Cursor using passive event listener
+    // Zero-lag Custom Precision Arrow & Magnetic Halo Cursor
     const cursor = document.getElementById("custom-cursor");
     const cursorDot = document.getElementById("custom-cursor-dot");
     const cursorLabel = document.getElementById("cursor-label");
 
-    if (cursor && cursorDot && window.matchMedia("(pointer: fine)").matches) {
+    if (
+      cursor &&
+      cursorDot &&
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    ) {
+      document.documentElement.classList.add("has-custom-cursor");
+
       let mouseX = -100;
       let mouseY = -100;
       let curX = -100;
       let curY = -100;
+      let hasMoved = false;
+
+      const showCursor = () => {
+        cursor.classList.add("is-visible");
+        cursorDot.classList.add("is-visible");
+      };
+
+      const hideCursor = () => {
+        cursor.classList.remove("is-visible");
+        cursorDot.classList.remove("is-visible");
+      };
 
       window.addEventListener(
         "mousemove",
         (e) => {
           mouseX = e.clientX;
           mouseY = e.clientY;
+          if (!hasMoved) {
+            curX = mouseX;
+            curY = mouseY;
+            hasMoved = true;
+          }
+          showCursor();
           cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
         },
         { passive: true }
       );
 
-      document.addEventListener("mouseover", (e) => {
-        const hoverTarget = e.target.closest("[data-cursor]");
-        if (hoverTarget) {
-          cursor.classList.add("is-expanded");
-          if (cursorLabel) cursorLabel.textContent = hoverTarget.dataset.cursor;
-        } else {
-          cursor.classList.remove("is-expanded");
-        }
+      document.addEventListener("mouseleave", hideCursor);
+      document.addEventListener("mouseenter", () => {
+        if (hasMoved) showCursor();
       });
 
+      window.addEventListener(
+        "mousedown",
+        () => {
+          cursor.classList.add("is-clicking");
+          cursorDot.classList.add("is-clicking");
+        },
+        { passive: true }
+      );
+
+      window.addEventListener(
+        "mouseup",
+        () => {
+          cursor.classList.remove("is-clicking");
+          cursorDot.classList.remove("is-clicking");
+        },
+        { passive: true }
+      );
+
+      document.addEventListener(
+        "mouseover",
+        (e) => {
+          const target = e.target;
+          if (!(target instanceof Element)) return;
+
+          const textInput = target.closest(
+            'input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]), textarea, [contenteditable="true"]'
+          );
+          if (textInput) {
+            cursor.classList.add("is-text-input");
+            cursorDot.classList.add("is-text-input");
+            cursor.classList.remove("is-expanded", "is-interactive");
+            cursorDot.classList.remove("is-pill-mode", "is-interactive");
+            return;
+          }
+
+          cursor.classList.remove("is-text-input");
+          cursorDot.classList.remove("is-text-input");
+
+          const badgeTarget = target.closest("[data-cursor]");
+          if (badgeTarget) {
+            cursor.classList.add("is-expanded");
+            cursor.classList.remove("is-interactive");
+            cursorDot.classList.add("is-pill-mode");
+            cursorDot.classList.remove("is-interactive");
+            if (cursorLabel) cursorLabel.textContent = badgeTarget.dataset.cursor;
+            return;
+          }
+
+          cursor.classList.remove("is-expanded");
+          cursorDot.classList.remove("is-pill-mode");
+
+          const interactiveTarget = target.closest(
+            'a, button, summary, select, label.choice-pill, input[type="range"], [role="button"], [role="tab"]'
+          );
+          if (interactiveTarget) {
+            cursor.classList.add("is-interactive");
+            cursorDot.classList.add("is-interactive");
+          } else {
+            cursor.classList.remove("is-interactive");
+            cursorDot.classList.remove("is-interactive");
+          }
+        },
+        { passive: true }
+      );
+
       const animateCursor = () => {
-        curX += (mouseX - curX) * 0.22;
-        curY += (mouseY - curY) * 0.22;
+        curX += (mouseX - curX) * 0.24;
+        curY += (mouseY - curY) * 0.24;
         cursor.style.transform = `translate3d(${curX}px, ${curY}px, 0)`;
         requestAnimationFrame(animateCursor);
       };
