@@ -5,25 +5,61 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B_60FPS_Canvas-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![Schema.org](https://img.shields.io/badge/SEO-MarketingAgency_JSON--LD-10EB82?style=flat-square)
 
-A high-converting, mock-data-driven **Digital Marketing & Revenue Growth Agency** web experience built with semantic HTML5, modern CSS architecture, and viewport-culled 60 FPS canvas/video motion engineering.
+A high-converting, mock-data-driven **Digital Marketing & Revenue Growth Agency** web experience featuring a warm editorial marquee preloader, a dual-canvas **3D Holographic Globe & Liquid Silk Aurora** hero engine, interactive CRO & ROAS calculators, and viewport-culled 60 FPS motion engineering.
+
+![KINETIX Growth Hero Showcase](./assets/01-hero-3d-globe.png)
 
 ---
 
-## Key Highlights
+## Motion & Video Demos
 
-- **Signature Editorial Preloader**: Warm off-white (`#F7F8F3`) full-bleed channel marquee with a center black `LOADING 0% → 100%` capsule that collapses and expands seamlessly into the dark hero stage.
-- **Multi-Layer 3D & Aurora Hero Engine**:
-  - **Full-Bleed Aurora Layer (`#hero-bg-fx-canvas`)**: Liquid northern-light silk curtains, diagonal shooting light meteors, twinkling bokeh dust, and an interactive cursor nebula spotlight.
-  - **3D Holographic Campaign Globe (`#hero-globe-canvas`)**: 380-node Fibonacci sphere with pole-to-pole energy shimmer, 3 counter-rotating 3D gyro-orbits with true front/back occlusion, and self-drawing 3D Bezier conversion laser arcs.
-- **Full-Funnel Marketing Architecture**:
+### 1. Signature Intro Preloader → Full-Screen Capsule Reveal
+Warm off-white (`#F7F8F3`) scrolling channel marquee with a center black `LOADING 0% → 100%` capsule that collapses to a vertical bar (`|`) and scales into darkness to unveil the 3D Hero stage.
+
+![Intro Preloader to Hero Reveal Demo](./assets/intro-to-hero-demo.gif)
+
+### 2. Interactive 3D Holographic Globe & Liquid Aurora Engine
+380-node Fibonacci holographic sphere with pole-to-pole energy waves, **3 counter-rotating 3D gyro-orbits** with true front/back hemisphere occlusion, self-drawing 3D Bezier conversion laser arcs, shooting meteors, and liquid northern-light silk curtains.
+
+![3D Holographic Globe & Silk Aurora Loop](./assets/hero-3d-aurora-loop.gif)
+
+<video src="./assets/hero-3d-showcase.mp4" controls autoplay loop muted playsinline width="100%"></video>
+
+> **[▶ Open / Download HD H.264 Video (`assets/hero-3d-showcase.mp4`)](./assets/hero-3d-showcase.mp4)**
+
+---
+
+## Interface & Section Gallery
+
+| Editorial Marquee Preloader | 3D Globe & Aurora Hero |
+| :---: | :---: |
+| ![Preloader Stage](./assets/00-preloader-intro.png) | ![Hero Stage](./assets/01-hero-3d-globe.png) |
+
+| Full-Funnel Revenue Channels | Before / After CRO Funnel Slider |
+| :---: | :---: |
+| ![Services Bento Grid](./assets/02-services-channels.png) | ![Before vs After Funnel Slider](./assets/03-funnel-slider.png) |
+
+| Filterable ROAS Case Studies | 3-Second Hook Creative Studio |
+| :---: | :---: |
+| ![Verified Case Studies](./assets/04-case-studies.png) | ![Performance Creative Studio](./assets/05-creative-studio.png) |
+
+### Interactive ROAS Forecaster & Transparent Growth Retainers
+![ROAS Revenue Simulator & Retainer Plans](./assets/06-roas-pricing.png)
+
+---
+
+## Core Capabilities
+
+- **Unified Executive Design System**: Carbon Obsidian (`#07090B`) surfaces paired with Signature Emerald (`#10EB82`), Glacier Cyan (`#38BDF8`), hairline architectural borders, and full Dark / Daylight theme switching.
+- **Full-Funnel Digital Marketing Sections**:
   - **Omnichannel Services**: Paid Social (Meta, TikTok, LinkedIn), Google PPC & Shopping, Technical & AI Search SEO (GEO), Viral UGC & Motion Video Ads, CRO, and Email/SMS Lifecycle.
-  - **Before / After Funnel Slider**: Interactive drag comparison between a leaky `1.4%` CVR page and a KINETIX-engineered `5.3%` CVR landing funnel.
+  - **Before / After Funnel Slider**: Drag comparison contrasting a leaky `1.3x` ROAS setup against a KINETIX `5.4x` ROAS landing architecture.
   - **Filterable Campaign Case Studies**: Verified client outcomes with video previews and deep-dive campaign modals.
-  - **Ad Creative Studio & ROAS Simulator**: Real-time 3-second hook/ROAS telemetry sandbox plus an interactive monthly ad-spend revenue calculator.
+  - **Creative Studio & ROAS Simulator**: Real-time 3-second thumb-stop hook sandbox plus an interactive monthly ad-spend revenue calculator.
   - **Growth Audit Funnel**: Multi-step scope estimator with accessible client-side validation.
-- **Technical SEO & Zero-Lag Performance**:
-  - Complete Open Graph, Twitter Card, canonical URL, inline SVG favicon, and `MarketingAgency` Schema.org JSON-LD structured data.
-  - `ZeroLagMotionEngine` powered by `IntersectionObserver` automatically pauses off-screen `<canvas>` shaders and `<video>` streams to maintain locked 60 FPS scrolling.
+- **Technical SEO & Zero-Lag 60 FPS Architecture**:
+  - Semantic HTML5 landmarks, Open Graph, Twitter Card, inline SVG favicon, and `MarketingAgency` Schema.org JSON-LD structured data.
+  - `ZeroLagMotionEngine` powered by `IntersectionObserver` automatically pauses off-screen `<canvas>` shaders and `<video>` streams.
 
 ---
 
@@ -31,12 +67,23 @@ A high-converting, mock-data-driven **Digital Marketing & Revenue Growth Agency*
 
 ```text
 agency/
-├── index.html    # Semantic HTML5 markup, SEO meta tags & JSON-LD structured data
-├── styles.css    # Fluid responsive layout, dark/light theme tokens & compositor animations
-├── data.js       # Structured mock dataset (services, case studies, ROAS tiers, reviews, FAQs)
-├── app.js        # Preloader, 3D globe & aurora engine, ROAS calculator, sliders & modals
-├── .gitignore    # Standard OS/editor exclusions
-└── README.md     # Project documentation
+├── assets/                       # Screenshots, animated GIF demos & HD MP4 showcase
+│   ├── 00-preloader-intro.png
+│   ├── 01-hero-3d-globe.png
+│   ├── 02-services-channels.png
+│   ├── 03-funnel-slider.png
+│   ├── 04-case-studies.png
+│   ├── 05-creative-studio.png
+│   ├── 06-roas-pricing.png
+│   ├── hero-3d-aurora-loop.gif
+│   ├── hero-3d-showcase.mp4
+│   └── intro-to-hero-demo.gif
+├── index.html                    # Semantic HTML5 markup, SEO meta tags & JSON-LD
+├── styles.css                    # Fluid responsive layout, design tokens & animations
+├── data.js                       # Mock dataset (services, case studies, ROAS tiers, FAQs)
+├── app.js                        # Preloader, 3D globe & aurora engine, calculators & modals
+├── .gitignore                    # Standard OS/editor exclusions
+└── README.md                     # Visual documentation & setup guide
 ```
 
 ---
